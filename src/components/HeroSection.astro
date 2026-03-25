@@ -1,0 +1,133 @@
+---
+import KnowledgeGraph from "./KnowledgeGraph";
+---
+
+<section class="section-dark relative min-h-screen overflow-hidden">
+  <!-- Gradient Background -->
+  <div
+    class="absolute inset-0 -z-10"
+    style="background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(36, 0, 229, 0.15) 0%, rgba(26, 26, 26, 0) 70%);"
+  >
+  </div>
+
+  <!-- Dot Grid -->
+  <div class="dot-grid absolute inset-0 -z-10"></div>
+
+  <!-- Content -->
+  <div class="container-wide relative z-10 flex min-h-screen flex-col justify-center pt-24 pb-16">
+    <!-- Nav -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5"
+      style="background: rgba(26, 26, 26, 0.8); backdrop-filter: blur(12px);"
+    >
+      <a
+        href="/"
+        class="text-lg font-bold tracking-tight"
+        style="font-family: var(--font-mono); color: var(--color-sand);"
+      >
+        relaunch<span style="color: var(--color-ultraviolett);">12x</span>
+      </a>
+      <a
+        href="#kontakt"
+        class="rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
+        style="background: var(--color-ultraviolett); color: var(--color-sand);"
+      >
+        Erstgespräch buchen
+      </a>
+    </nav>
+
+    <!-- Hero Content -->
+    <div class="flex flex-col items-center text-center">
+      <!-- Section Label -->
+      <span class="section-label mb-6 hero-animate hero-delay-1">
+        Wissenssystem für B2B-Wachstum
+      </span>
+
+      <!-- Headline -->
+      <h1 class="mb-6 max-w-4xl hero-animate hero-delay-2" style="color: var(--color-sand);">
+        Hoffnung ist keine<br />
+        <em class="gradient-text">Strategie.</em>
+      </h1>
+
+      <!-- Subline -->
+      <p
+        class="mb-12 max-w-2xl text-lg hero-animate hero-delay-3"
+        style="color: rgba(245, 240, 232, 0.65); line-height: 1.7;"
+      >
+        Wir bauen für B2B-Unternehmen ein System, das Unternehmenswissen erfasst,
+        strukturiert, validiert und in messbares Wachstum verwandelt.
+        Der Knowledge Graph ist das Herzstück.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 mb-16 hero-animate hero-delay-4">
+        <a
+          href="#kontakt"
+          class="rounded-lg px-8 py-3.5 text-base font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          style="background: var(--color-ultraviolett); color: var(--color-sand);"
+        >
+          Erstgespräch buchen
+        </a>
+        <a
+          href="#prozess"
+          class="rounded-lg border px-8 py-3.5 text-base font-medium transition-all duration-200 hover:-translate-y-0.5"
+          style="border-color: rgba(245, 240, 232, 0.15); color: rgba(245, 240, 232, 0.7);"
+        >
+          So funktioniert es
+        </a>
+      </div>
+
+      <!-- Knowledge Graph -->
+      <div class="w-full max-w-5xl hero-animate hero-delay-5">
+        <KnowledgeGraph client:visible />
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hero-animate hero-delay-5">
+    <div
+      class="h-10 w-6 rounded-full border-2 flex justify-center pt-2"
+      style="border-color: rgba(245, 240, 232, 0.2);"
+    >
+      <div
+        class="h-2 w-1 rounded-full animate-bounce"
+        style="background: rgba(245, 240, 232, 0.4);"
+      >
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hero entry animations — NOT scroll-driven, play on page load */
+  .hero-animate {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+    animation: hero-enter 0.8s var(--ease-smooth) forwards;
+  }
+
+  .hero-delay-1 { animation-delay: 0.1s; }
+  .hero-delay-2 { animation-delay: 0.25s; }
+  .hero-delay-3 { animation-delay: 0.45s; }
+  .hero-delay-4 { animation-delay: 0.6s; }
+  .hero-delay-5 { animation-delay: 0.8s; }
+
+  @keyframes hero-enter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animate {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      animation: none;
+    }
+  }
+</style>

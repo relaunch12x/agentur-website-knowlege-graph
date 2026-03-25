@@ -1,0 +1,266 @@
+---
+/**
+ * ProzessSection — 9 steps of collaboration in two phases.
+ * Dark background with dot-grid. Vertical timeline, alternating left/right.
+ */
+
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
+const phase1Steps: Step[] = [
+  { number: "01", title: "60 Fragen", description: "Wir erfassen dein Unternehmenswissen. Gründlich. Strukturiert." },
+  { number: "02", title: "Knowledge Graph", description: "Alles fließt in eine Wissensdatenbank. Verbunden. Durchsuchbar." },
+  { number: "03", title: "Fakten vs. Annahmen", description: "Wir trennen, was validiert ist — von dem, was vermutet wird." },
+  { number: "04", title: "Strategie ableiten", description: "Positionierung, USP, Messaging — aus Wissen, nicht aus Bauchgefühl." },
+  { number: "05", title: "Design & Website", description: "Designsystem, Architektur, Launch. Neue Landingpage am selben Tag." },
+];
+
+const phase2Steps: Step[] = [
+  { number: "06", title: "Tracking einrichten", description: "PostHog, Google Search Console, Conversion-Tracking. Alles messbar." },
+  { number: "07", title: "Hypothesen aufstellen", description: "Was funktioniert? Was nicht? Wir raten nicht — wir testen." },
+  { number: "08", title: "Content skalieren", description: "AI-gestützte Workflows. SEO. GEO. Landingpages am selben Tag." },
+  { number: "09", title: "Zurückspeisen", description: "Jedes Ergebnis fließt zurück in den Knowledge Graph. Das System wird besser." },
+];
+---
+
+<section id="prozess" class="section-dark relative overflow-hidden">
+  <!-- Dot Grid Background -->
+  <div class="dot-grid absolute inset-0"></div>
+
+  <!-- Grain Overlay -->
+  <div class="grain-overlay absolute inset-0 pointer-events-none"></div>
+
+  <div
+    class="container-wide relative z-10"
+    style="padding-top: clamp(80px, 12vw, 180px); padding-bottom: clamp(80px, 12vw, 180px);"
+  >
+    <!-- Header -->
+    <div class="text-center mb-16 lg:mb-24 reveal-on-scroll">
+      <span class="section-label mb-6 block">Der Prozess</span>
+      <h2 class="mb-6" style="color: var(--color-sand);">
+        From 0 to 1. From 1 to X.
+      </h2>
+      <p
+        class="mx-auto"
+        style="max-width: 600px; color: rgba(245, 240, 232, 0.6);"
+      >
+        Ein System in zwei Phasen. Das Fundament — und der Loop, der nie aufhört.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+
+      <!-- Phase 1 Divider -->
+      <div class="phase-divider reveal-on-scroll">
+        <span class="phase-divider-text">From 0 to 1 — Das Fundament</span>
+      </div>
+
+      <!-- Phase 1 Steps -->
+      {phase1Steps.map((step, i) => (
+        <div class:list={["timeline-step", i % 2 === 0 ? "timeline-step--left" : "timeline-step--right", "reveal-on-scroll"]}>
+          <div class="timeline-step-content">
+            <span class="step-number">{step.number}</span>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-description">{step.description}</p>
+          </div>
+          <div class="timeline-step-dot">
+            <span class="dot-inner"></span>
+          </div>
+        </div>
+      ))}
+
+      <!-- Phase 2 Divider -->
+      <div class="phase-divider reveal-on-scroll">
+        <span class="phase-divider-text">From 1 to X — Der Loop</span>
+      </div>
+
+      <!-- Phase 2 Steps -->
+      {phase2Steps.map((step, i) => (
+        <div class:list={["timeline-step", (i + phase1Steps.length) % 2 === 0 ? "timeline-step--left" : "timeline-step--right", "reveal-on-scroll"]}>
+          <div class="timeline-step-content">
+            <span class="step-number">{step.number}</span>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-description">{step.description}</p>
+          </div>
+          <div class="timeline-step-dot">
+            <span class="dot-inner"></span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Timeline Container ---- */
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Center vertical line */
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    background: rgba(245, 240, 232, 0.1);
+  }
+
+  /* ---- Phase Divider ---- */
+  .phase-divider {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 32px 0 40px;
+  }
+
+  .phase-divider-text {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.125rem, 2vw + 0.25rem, 1.5rem);
+    color: var(--color-sand);
+    padding: 8px 24px;
+    position: relative;
+    background: var(--color-ink);
+  }
+
+  .phase-divider-text::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: var(--color-ultraviolett);
+    opacity: 0.5;
+  }
+
+  /* ---- Timeline Step ---- */
+  .timeline-step {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 0 0 48px;
+  }
+
+  /* Content block */
+  .timeline-step-content {
+    width: calc(50% - 32px);
+  }
+
+  /* Dot on the line */
+  .timeline-step-dot {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    border: 2px solid rgba(245, 240, 232, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .dot-inner {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-ultraviolett);
+    opacity: 0.7;
+  }
+
+  /* Left-aligned step: content on left */
+  .timeline-step--left {
+    justify-content: flex-start;
+    text-align: right;
+  }
+
+  .timeline-step--left .timeline-step-content {
+    padding-right: 32px;
+  }
+
+  /* Right-aligned step: content on right */
+  .timeline-step--right {
+    justify-content: flex-end;
+    text-align: left;
+  }
+
+  .timeline-step--right .timeline-step-content {
+    padding-left: 32px;
+  }
+
+  /* ---- Step Typography ---- */
+  .step-number {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5rem, 2vw + 0.5rem, 1.875rem);
+    font-weight: 700;
+    color: var(--color-ultraviolett);
+    opacity: 0.7;
+    line-height: 1;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .step-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(1.125rem, 1.5vw + 0.25rem, 1.375rem);
+    color: var(--color-sand);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .step-description {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(0.875rem, 0.5vw + 0.5rem, 1rem);
+    color: rgba(245, 240, 232, 0.6);
+    line-height: 1.6;
+  }
+
+  /* ---- Mobile: all steps on the right ---- */
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 20px;
+    }
+
+    .timeline-step {
+      justify-content: flex-end !important;
+      text-align: left !important;
+    }
+
+    .timeline-step-content {
+      width: calc(100% - 52px) !important;
+      padding-left: 24px !important;
+      padding-right: 0 !important;
+    }
+
+    .timeline-step-dot {
+      left: 20px;
+    }
+
+    .phase-divider {
+      text-align: left;
+      padding-left: 52px;
+    }
+
+    .phase-divider-text {
+      background: transparent;
+    }
+  }
+</style>

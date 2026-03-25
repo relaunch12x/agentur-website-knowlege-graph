@@ -1,0 +1,351 @@
+---
+/**
+ * ProblemSection — Names the problem concretely. Builds tension.
+ * Sand background with grain overlay. Asymmetric 55/45 split.
+ */
+---
+
+<section
+  class="grain-overlay relative overflow-hidden"
+  style="background-color: var(--color-sand);"
+>
+  <div
+    class="container-wide"
+    style="padding-top: clamp(80px, 12vw, 180px); padding-bottom: clamp(80px, 12vw, 180px);"
+  >
+    <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
+
+      <!-- Text — Left 55% -->
+      <div class="w-full lg:w-[55%] reveal-on-scroll">
+        <span class="section-label mb-6 block">Das Problem</span>
+
+        <h2
+          class="mb-8"
+          style="color: var(--color-ink);"
+        >
+          Dein Wissen steckt in Köpfen. Nicht auf deiner Website.
+        </h2>
+
+        <div
+          class="space-y-5"
+          style="color: var(--color-ink-light); max-width: 540px;"
+        >
+          <p>
+            Die meisten B2B-Unternehmen treffen Entscheidungen auf Basis von Annahmen.
+            Was davon ist ein <em>Fakt</em> — und was eine <em>Annahme</em>?
+          </p>
+          <p>
+            Die Website ist veraltet. Jede Änderung dauert Wochen.
+            SEO baut auf einem kaputten Fundament.
+          </p>
+          <p>
+            Und dann kommt die nächste Agentur und verspricht einen Relaunch.
+            Ohne zu fragen, was du eigentlich <em>weißt</em>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Visual — Right 45%: Broken Dashboard Mockup -->
+      <div class="w-full lg:w-[45%] reveal-on-scroll">
+        <div class="dashboard-mockup">
+          <!-- Browser Chrome -->
+          <div class="dashboard-chrome">
+            <div class="chrome-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="chrome-url">
+              <span>dashboard.example.com</span>
+            </div>
+          </div>
+
+          <!-- Dashboard Body -->
+          <div class="dashboard-body">
+            <!-- Top Bar -->
+            <div class="dashboard-topbar">
+              <div class="topbar-block topbar-logo"></div>
+              <div class="topbar-nav">
+                <div class="topbar-block topbar-item"></div>
+                <div class="topbar-block topbar-item"></div>
+                <div class="topbar-block topbar-item"></div>
+              </div>
+            </div>
+
+            <!-- Dashboard Content Grid -->
+            <div class="dashboard-grid">
+              <!-- Left: Metric Cards -->
+              <div class="metric-cards">
+                <!-- Card 1: Assumption -->
+                <div class="metric-card metric-card--assumption">
+                  <div class="metric-bar metric-bar--short"></div>
+                  <div class="metric-value">—</div>
+                  <span class="metric-label-tag">Annahme?</span>
+                </div>
+
+                <!-- Card 2: Fact -->
+                <div class="metric-card metric-card--fact">
+                  <div class="metric-bar metric-bar--medium"></div>
+                  <div class="metric-value">
+                    <span class="fact-value">142</span>
+                    <span class="fact-dot"></span>
+                  </div>
+                  <span class="metric-label-tag metric-label-tag--fact">Fakt</span>
+                </div>
+
+                <!-- Card 3: Assumption -->
+                <div class="metric-card metric-card--assumption">
+                  <div class="metric-bar metric-bar--long"></div>
+                  <div class="metric-value">—</div>
+                  <span class="metric-label-tag">Annahme?</span>
+                </div>
+              </div>
+
+              <!-- Right: Chart Placeholder -->
+              <div class="chart-area">
+                <div class="chart-placeholder">
+                  <!-- Fake chart lines -->
+                  <svg viewBox="0 0 200 120" fill="none" class="chart-svg">
+                    <line x1="0" y1="100" x2="200" y2="100" stroke="rgba(85,85,85,0.2)" stroke-width="1" />
+                    <line x1="0" y1="70" x2="200" y2="70" stroke="rgba(85,85,85,0.1)" stroke-width="1" stroke-dasharray="4 4" />
+                    <line x1="0" y1="40" x2="200" y2="40" stroke="rgba(85,85,85,0.1)" stroke-width="1" stroke-dasharray="4 4" />
+                    <!-- Dashed "uncertain" chart line -->
+                    <polyline
+                      points="10,80 40,65 70,75 100,50 130,60 160,45 190,55"
+                      stroke="rgba(85,85,85,0.35)"
+                      stroke-width="2"
+                      stroke-dasharray="6 4"
+                      fill="none"
+                    />
+                  </svg>
+                  <div class="chart-questions">
+                    <span>?</span>
+                    <span>?</span>
+                    <span>?</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Dashboard Mockup ---- */
+  .dashboard-mockup {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card-hover);
+    border: 1px solid rgba(26, 26, 26, 0.08);
+  }
+
+  /* Browser Chrome */
+  .dashboard-chrome {
+    background: var(--color-ink);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chrome-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .chrome-url {
+    flex: 1;
+    background: rgba(245, 240, 232, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 5px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: rgba(245, 240, 232, 0.35);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* Dashboard Body */
+  .dashboard-body {
+    background: var(--color-ink);
+    padding: 16px;
+  }
+
+  /* Top Bar */
+  .dashboard-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(245, 240, 232, 0.06);
+  }
+
+  .topbar-block {
+    border-radius: 3px;
+  }
+
+  .topbar-logo {
+    width: 64px;
+    height: 10px;
+    background: rgba(245, 240, 232, 0.12);
+  }
+
+  .topbar-nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  .topbar-item {
+    width: 40px;
+    height: 8px;
+    background: rgba(245, 240, 232, 0.06);
+  }
+
+  /* Grid */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Metric Cards */
+  .metric-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .metric-card {
+    padding: 14px;
+    border-radius: var(--radius-md);
+    position: relative;
+  }
+
+  .metric-card--assumption {
+    border: 1.5px dashed var(--color-ink-light);
+    opacity: 0.5;
+  }
+
+  .metric-card--fact {
+    border: 1.5px solid var(--color-ultraviolett);
+    opacity: 1;
+  }
+
+  .metric-bar {
+    height: 5px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+
+  .metric-bar--short {
+    width: 35%;
+    background: rgba(85, 85, 85, 0.3);
+  }
+
+  .metric-bar--medium {
+    width: 60%;
+    background: var(--color-ultraviolett);
+    opacity: 0.7;
+  }
+
+  .metric-bar--long {
+    width: 50%;
+    background: rgba(85, 85, 85, 0.3);
+  }
+
+  .metric-value {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(245, 240, 232, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .fact-value {
+    color: var(--color-sand);
+  }
+
+  .fact-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-ultraviolett);
+    box-shadow: 0 0 8px var(--color-uv-glow);
+  }
+
+  .metric-label-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: rgba(85, 85, 85, 0.7);
+    letter-spacing: 0.05em;
+  }
+
+  .metric-label-tag--fact {
+    color: var(--color-ultraviolett);
+  }
+
+  /* Chart Area */
+  .chart-area {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .chart-placeholder {
+    flex: 1;
+    border: 1.5px dashed rgba(85, 85, 85, 0.3);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+  }
+
+  .chart-svg {
+    width: 100%;
+    height: auto;
+    opacity: 0.8;
+  }
+
+  .chart-questions {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: rgba(85, 85, 85, 0.4);
+  }
+</style>
