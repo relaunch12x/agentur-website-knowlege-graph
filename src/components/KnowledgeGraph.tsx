@@ -382,9 +382,12 @@ export default function KnowledgeGraph() {
     const updateDimensions = () => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
+        const isMobile = rect.width < 640;
         setDimensions({
           width: rect.width,
-          height: Math.min(rect.width * 0.65, 700),
+          height: isMobile
+            ? Math.min(rect.width * 0.55, 300)
+            : Math.min(rect.width * 0.65, 700),
         });
       }
     };
@@ -403,8 +406,9 @@ export default function KnowledgeGraph() {
     // Clear previous render
     svg.selectAll("*").remove();
 
-    // Clone data for D3 mutation
-    const nodeData: GraphNode[] = nodes.map((d) => ({ ...d }));
+    // Clone data for D3 mutation — scale down node sizes on mobile
+    const sizeScale = width < 640 ? 0.6 : 1;
+    const nodeData: GraphNode[] = nodes.map((d) => ({ ...d, size: d.size * sizeScale }));
     const linkData: GraphLink[] = links.map((d) => ({ ...d }));
 
     // Create simulation
@@ -422,9 +426,9 @@ export default function KnowledgeGraph() {
           })
           .strength((d) => (d as GraphLink).strength || 0.4)
       )
-      .force("charge", d3.forceManyBody().strength(-300).distanceMax(400))
+      .force("charge", d3.forceManyBody().strength(width < 640 ? -150 : -300).distanceMax(width < 640 ? 200 : 400))
       .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collision", d3.forceCollide<GraphNode>().radius((d) => d.size + 8))
+      .force("collision", d3.forceCollide<GraphNode>().radius((d) => d.size + (width < 640 ? 4 : 8)))
       .force("x", d3.forceX(width / 2).strength(0.05))
       .force("y", d3.forceY(height / 2).strength(0.05));
 
@@ -511,13 +515,14 @@ export default function KnowledgeGraph() {
       .attr("stroke-opacity", 0.5);
 
     // Node labels
+    const isMobile = width < 640;
     node
       .append("text")
       .text((d) => d.label)
       .attr("text-anchor", "middle")
-      .attr("dy", (d) => d.size + 16)
+      .attr("dy", (d) => d.size + (isMobile ? 10 : 16))
       .attr("fill", "rgba(245, 240, 232, 0.7)")
-      .attr("font-size", (d) => (d.size > 20 ? "12px" : "10px"))
+      .attr("font-size", (d) => isMobile ? "8px" : (d.size > 20 ? "12px" : "10px"))
       .attr("font-family", "'Inter', sans-serif")
       .attr("font-weight", (d) => (d.size > 20 ? "500" : "400"))
       .attr("pointer-events", "none");
@@ -530,7 +535,7 @@ export default function KnowledgeGraph() {
       .attr("text-anchor", "middle")
       .attr("dy", "0.35em")
       .attr("fill", "#f5f0e8")
-      .attr("font-size", "14px")
+      .attr("font-size", isMobile ? "10px" : "14px")
       .attr("font-family", "'JetBrains Mono', monospace")
       .attr("font-weight", "700")
       .attr("pointer-events", "none");
@@ -636,11 +641,12 @@ export default function KnowledgeGraph() {
     });
 
     // Add CSS animation for pulse
+    const coreSize = 42 * sizeScale;
     const style = document.createElement("style");
     style.textContent = `
       @keyframes pulse {
-        0%, 100% { opacity: 0.3; r: ${42 + 12}; }
-        50% { opacity: 0.6; r: ${42 + 18}; }
+        0%, 100% { opacity: 0.3; r: ${coreSize + 12}; }
+        50% { opacity: 0.6; r: ${coreSize + 18}; }
       }
     `;
     document.head.appendChild(style);
