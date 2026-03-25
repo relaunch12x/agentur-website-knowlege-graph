@@ -348,10 +348,18 @@ export default function KnowledgeGraph() {
     // Container group for zoom
     const g = svg.append("g");
 
-    // Zoom behavior
+    // Zoom behavior — only pinch/ctrl+scroll, NOT regular scroll
     const zoom = d3
       .zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.4, 3])
+      .filter((event) => {
+        // Allow pinch (touch) and ctrl+scroll, block regular scroll
+        if (event.type === "wheel") {
+          return event.ctrlKey || event.metaKey;
+        }
+        // Allow all other events (drag, touch pinch, dblclick)
+        return true;
+      })
       .on("zoom", (event) => {
         g.attr("transform", event.transform);
       });
@@ -558,14 +566,69 @@ export default function KnowledgeGraph() {
     };
   }, [dimensions]);
 
+  // Scroll-driven zoom + physics nudge
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let lastScrollY = window.scrollY;
+    let nudgeTimeout: ReturnType<typeof setTimeout> | null = null;
+
+    const handleScroll = () => {
+      // --- Visual zoom ---
+      const rect = container.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const elementCenter = rect.top + rect.height / 2;
+      const distanceFromCenter = Math.abs(viewportCenter - elementCenter);
+      const maxDistance = window.innerHeight;
+
+      const normalizedDistance = Math.min(distanceFromCenter / maxDistance, 1);
+      const scale = 1 + 0.5 * (1 - normalizedDistance) * (1 - normalizedDistance);
+
+      container.style.transform = `scale(${scale})`;
+      container.style.transformOrigin = "center center";
+
+      // --- Physics nudge: give D3 simulation a kick on scroll ---
+      const sim = simulationRef.current;
+      if (!sim) return;
+
+      const scrollDelta = window.scrollY - lastScrollY;
+      lastScrollY = window.scrollY;
+
+      // Only nudge if graph is somewhat visible and there's actual scroll movement
+      if (Math.abs(scrollDelta) > 2 && normalizedDistance < 0.8) {
+        // Restart simulation with low alpha — nodes jiggle gently
+        sim.alpha(0.08).restart();
+
+        // Stop it again after a short moment so it settles
+        if (nudgeTimeout) clearTimeout(nudgeTimeout);
+        nudgeTimeout = setTimeout(() => {
+          sim.alphaTarget(0);
+        }, 300);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (nudgeTimeout) clearTimeout(nudgeTimeout);
+    };
+  }, []);
+
   return (
-    <div ref={containerRef} className="relative w-full">
+    <div
+      ref={containerRef}
+      className="relative w-full"
+      style={{ transition: "transform 0.1s linear", willChange: "transform" }}
+    >
       <svg
         ref={svgRef}
         width={dimensions.width}
         height={dimensions.height}
         className="w-full"
-        style={{ maxHeight: "700px" }}
+        style={{ maxHeight: "700px", touchAction: "pan-y" }}
       />
 
       {/* Tooltip */}
