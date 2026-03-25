@@ -9,12 +9,15 @@ interface GraphNode extends d3.SimulationNodeDatum {
   size: number;
   description: string;
   details?: string[];
+  validation: "Recherche" | "Qualitative Daten" | "Quantitative Daten" | "Fakt" | "Bulletproof";
+  confidence: number; // 0.0 to 1.0
 }
 
 interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
   source: string | GraphNode;
   target: string | GraphNode;
   strength?: number;
+  relation: string; // e.g., "leitet ab", "enthält", "basiert auf", "validiert durch", "informiert"
 }
 
 // --- Data ---
@@ -27,6 +30,8 @@ const nodes: GraphNode[] = [
     size: 42,
     description: "Dein gesamtes Unternehmenswissen — strukturiert, verbunden, validiert.",
     details: ["342 validierte Fakten", "89 getestete Annahmen", "12 Datenquellen"],
+    validation: "Bulletproof",
+    confidence: 0.95,
   },
 
   // Positionierung Cluster
@@ -37,6 +42,8 @@ const nodes: GraphNode[] = [
     size: 28,
     description: "Marktposition basierend auf validiertem Wissen.",
     details: ["USP: Wissenssystem statt Agentur", "3 Differenzierungsmerkmale", "Validiert durch 60-Fragen-Audit"],
+    validation: "Fakt",
+    confidence: 0.91,
   },
   {
     id: "usp",
@@ -45,6 +52,8 @@ const nodes: GraphNode[] = [
     size: 16,
     description: "Alleinstellungsmerkmal aus Marktanalyse abgeleitet.",
     details: ["Knowledge Graph als Kern", "Loop statt Projekt"],
+    validation: "Quantitative Daten",
+    confidence: 0.87,
   },
   {
     id: "wettbewerb",
@@ -53,6 +62,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "12 direkte Wettbewerber analysiert und kategorisiert.",
     details: ["4 Full-Service-Agenturen", "5 SEO-Spezialisten", "3 Beratungen"],
+    validation: "Quantitative Daten",
+    confidence: 0.89,
   },
   {
     id: "markt",
@@ -60,6 +71,8 @@ const nodes: GraphNode[] = [
     group: "positionierung",
     size: 12,
     description: "B2B SaaS/IT-Markt, DACH-Region.",
+    validation: "Recherche",
+    confidence: 0.72,
   },
 
   // Zielgruppen Cluster
@@ -70,6 +83,8 @@ const nodes: GraphNode[] = [
     size: 26,
     description: "3 validierte Personas aus 60-Fragen-Audit.",
     details: ["GF/Inhaber (Primär)", "CMO/Marketing-Leiter", "Head of Growth"],
+    validation: "Fakt",
+    confidence: 0.93,
   },
   {
     id: "persona1",
@@ -78,6 +93,8 @@ const nodes: GraphNode[] = [
     size: 18,
     description: "Primäre Persona: GF eines B2B-Unternehmens, 5–50 MA.",
     details: ["Alter: 35–50", "Pain: keine Marketing-Kompetenz", "Budget: 30–80k"],
+    validation: "Qualitative Daten",
+    confidence: 0.85,
   },
   {
     id: "persona2",
@@ -86,6 +103,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "Marketing-Leiter sucht datengetriebenen Partner.",
     details: ["Alter: 30–45", "Pain: schlechte Agentur-Erfahrung", "Entscheider: Ja"],
+    validation: "Qualitative Daten",
+    confidence: 0.82,
   },
   {
     id: "painpoints",
@@ -94,6 +113,8 @@ const nodes: GraphNode[] = [
     size: 12,
     description: "Validierte Schmerzpunkte der Zielgruppe.",
     details: ["Veraltete Website", "SEO auf kaputtem Fundament", "Entscheidungen auf Annahmen"],
+    validation: "Fakt",
+    confidence: 0.91,
   },
 
   // SEO Cluster
@@ -104,6 +125,8 @@ const nodes: GraphNode[] = [
     size: 24,
     description: "Content-Strategie aus Knowledge Graph abgeleitet.",
     details: ["142 Keywords identifiziert", "28 mit Ranking-Potenzial", "6 Pillar Pages geplant"],
+    validation: "Quantitative Daten",
+    confidence: 0.88,
   },
   {
     id: "keywords",
@@ -112,6 +135,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "Keyword-Cluster nach Suchintention gruppiert.",
     details: ["Transaktional: 34", "Informational: 89", "Navigational: 19"],
+    validation: "Quantitative Daten",
+    confidence: 0.92,
   },
   {
     id: "content",
@@ -120,6 +145,8 @@ const nodes: GraphNode[] = [
     size: 16,
     description: "Redaktionsplan basierend auf Keyword-Gaps.",
     details: ["12 Landingpages", "24 Blog-Artikel", "6 Pillar Pages"],
+    validation: "Qualitative Daten",
+    confidence: 0.78,
   },
   {
     id: "gaps",
@@ -127,6 +154,8 @@ const nodes: GraphNode[] = [
     group: "seo",
     size: 11,
     description: "Lücken im Vergleich zu Top-3-Wettbewerbern.",
+    validation: "Recherche",
+    confidence: 0.74,
   },
 
   // Branding Cluster
@@ -137,6 +166,8 @@ const nodes: GraphNode[] = [
     size: 22,
     description: "Visuelle und verbale Identität aus Positionierung abgeleitet.",
     details: ["Designsystem definiert", "Brand Voice Guidelines", "Farbpalette: Sand + Ultraviolett"],
+    validation: "Fakt",
+    confidence: 0.90,
   },
   {
     id: "voice",
@@ -145,6 +176,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "Direkt, konkret, editorial, ruhig.",
     details: ["Tonalität: Selbstbewusst", "Anrede: Du", "Keine Buzzwords"],
+    validation: "Fakt",
+    confidence: 0.93,
   },
   {
     id: "design",
@@ -153,6 +186,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "Typografie, Farben, Spacing — alles aus Brand abgeleitet.",
     details: ["Source Serif 4 + Inter", "Sand + Ultraviolett", "Editorial Grid"],
+    validation: "Bulletproof",
+    confidence: 0.96,
   },
   {
     id: "messaging",
@@ -161,6 +196,8 @@ const nodes: GraphNode[] = [
     size: 16,
     description: "Kernbotschaften und Messaging-Hierarchie.",
     details: ["Tagline: From 1 to X", "Problem: Hoffnung ist keine Strategie", "Proof: 60 Fragen. 1 Knowledge Graph."],
+    validation: "Qualitative Daten",
+    confidence: 0.84,
   },
 
   // Kampagnen Cluster
@@ -171,6 +208,8 @@ const nodes: GraphNode[] = [
     size: 22,
     description: "Laufende und geplante Marketing-Kampagnen.",
     details: ["LinkedIn Outreach (aktiv)", "SEO Content Sprint (Q2)", "Webinar-Serie (geplant)"],
+    validation: "Recherche",
+    confidence: 0.68,
   },
   {
     id: "linkedin",
@@ -179,6 +218,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "Content-Strategie: Frequenzwechsel statt Lautstärke.",
     details: ["3 Posts/Woche", "Behind the Process: 35%", "Fakten vs. Annahmen: 25%"],
+    validation: "Qualitative Daten",
+    confidence: 0.76,
   },
   {
     id: "hypothesen",
@@ -187,6 +228,8 @@ const nodes: GraphNode[] = [
     size: 12,
     description: "Aktive Tests und validierte Hypothesen.",
     details: ["14 aktive Tests", "8 validiert", "6 widerlegt"],
+    validation: "Quantitative Daten",
+    confidence: 0.83,
   },
 
   // Website Cluster
@@ -197,6 +240,8 @@ const nodes: GraphNode[] = [
     size: 24,
     description: "Astro-basierte Website — neue Landingpage am selben Tag.",
     details: ["8 Seiten live", "Core Web Vitals: 98/100", "Astro + React + Tailwind"],
+    validation: "Bulletproof",
+    confidence: 0.97,
   },
   {
     id: "landingpages",
@@ -205,6 +250,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "Conversion-optimierte Seiten aus Content-Plan.",
     details: ["4 live", "8 geplant", "A/B-Tests aktiv"],
+    validation: "Quantitative Daten",
+    confidence: 0.86,
   },
   {
     id: "tracking",
@@ -213,6 +260,8 @@ const nodes: GraphNode[] = [
     size: 14,
     description: "Umfassendes Tracking über PostHog + GSC.",
     details: ["PostHog Events", "Google Search Console", "Conversion-Tracking"],
+    validation: "Bulletproof",
+    confidence: 0.98,
   },
   {
     id: "architektur",
@@ -220,56 +269,58 @@ const nodes: GraphNode[] = [
     group: "website",
     size: 11,
     description: "Agile Astro-Architektur für schnelle Iterationen.",
+    validation: "Fakt",
+    confidence: 0.94,
   },
 ];
 
 const links: GraphLink[] = [
   // Core connections
-  { source: "kg", target: "pos", strength: 0.8 },
-  { source: "kg", target: "zg", strength: 0.8 },
-  { source: "kg", target: "seo", strength: 0.8 },
-  { source: "kg", target: "brand", strength: 0.8 },
-  { source: "kg", target: "kampagnen", strength: 0.7 },
-  { source: "kg", target: "website", strength: 0.7 },
+  { source: "kg", target: "pos", strength: 0.8, relation: "leitet ab" },
+  { source: "kg", target: "zg", strength: 0.8, relation: "definiert" },
+  { source: "kg", target: "seo", strength: 0.8, relation: "leitet ab" },
+  { source: "kg", target: "brand", strength: 0.8, relation: "leitet ab" },
+  { source: "kg", target: "kampagnen", strength: 0.7, relation: "informiert" },
+  { source: "kg", target: "website", strength: 0.7, relation: "steuert" },
 
   // Positionierung
-  { source: "pos", target: "usp" },
-  { source: "pos", target: "wettbewerb" },
-  { source: "pos", target: "markt" },
-  { source: "pos", target: "brand" },
+  { source: "pos", target: "usp", relation: "enthält" },
+  { source: "pos", target: "wettbewerb", relation: "basiert auf" },
+  { source: "pos", target: "markt", relation: "basiert auf" },
+  { source: "pos", target: "brand", relation: "informiert" },
 
   // Zielgruppen
-  { source: "zg", target: "persona1" },
-  { source: "zg", target: "persona2" },
-  { source: "zg", target: "painpoints" },
-  { source: "zg", target: "seo" },
-  { source: "persona1", target: "painpoints" },
+  { source: "zg", target: "persona1", relation: "enthält" },
+  { source: "zg", target: "persona2", relation: "enthält" },
+  { source: "zg", target: "painpoints", relation: "validiert durch" },
+  { source: "zg", target: "seo", relation: "informiert" },
+  { source: "persona1", target: "painpoints", relation: "hat" },
 
   // SEO
-  { source: "seo", target: "keywords" },
-  { source: "seo", target: "content" },
-  { source: "seo", target: "gaps" },
-  { source: "content", target: "website" },
-  { source: "keywords", target: "content" },
+  { source: "seo", target: "keywords", relation: "enthält" },
+  { source: "seo", target: "content", relation: "leitet ab" },
+  { source: "seo", target: "gaps", relation: "identifiziert" },
+  { source: "content", target: "website", relation: "liefert an" },
+  { source: "keywords", target: "content", relation: "informiert" },
 
   // Branding
-  { source: "brand", target: "voice" },
-  { source: "brand", target: "design" },
-  { source: "brand", target: "messaging" },
-  { source: "messaging", target: "kampagnen" },
-  { source: "voice", target: "content" },
+  { source: "brand", target: "voice", relation: "enthält" },
+  { source: "brand", target: "design", relation: "enthält" },
+  { source: "brand", target: "messaging", relation: "leitet ab" },
+  { source: "messaging", target: "kampagnen", relation: "steuert" },
+  { source: "voice", target: "content", relation: "formt" },
 
   // Kampagnen
-  { source: "kampagnen", target: "linkedin" },
-  { source: "kampagnen", target: "hypothesen" },
-  { source: "hypothesen", target: "kg" },
+  { source: "kampagnen", target: "linkedin", relation: "enthält" },
+  { source: "kampagnen", target: "hypothesen", relation: "generiert" },
+  { source: "hypothesen", target: "kg", relation: "validiert" },
 
   // Website
-  { source: "website", target: "landingpages" },
-  { source: "website", target: "tracking" },
-  { source: "website", target: "architektur" },
-  { source: "tracking", target: "hypothesen" },
-  { source: "landingpages", target: "seo" },
+  { source: "website", target: "landingpages", relation: "enthält" },
+  { source: "website", target: "tracking", relation: "enthält" },
+  { source: "website", target: "architektur", relation: "basiert auf" },
+  { source: "tracking", target: "hypothesen", relation: "liefert Daten für" },
+  { source: "landingpages", target: "seo", relation: "optimiert für" },
 ];
 
 // --- Group Colors ---
@@ -282,6 +333,40 @@ const groupColors: Record<string, string> = {
   kampagnen: "#a855f7",
   website: "#6366f1",
 };
+
+const validationColors: Record<string, string> = {
+  "Recherche": "#f59e0b",        // amber
+  "Qualitative Daten": "#3b82f6", // blue
+  "Quantitative Daten": "#0ea5e9", // sky
+  "Fakt": "#22c55e",              // green
+  "Bulletproof": "#2400E5",       // ultraviolett
+};
+
+const validationIcons: Record<string, string> = {
+  "Recherche": "◔",
+  "Qualitative Daten": "◑",
+  "Quantitative Daten": "◕",
+  "Fakt": "●",
+  "Bulletproof": "◉",
+};
+
+// Get relations for a specific node from the links array
+function getNodeRelations(nodeId: string, allLinks: GraphLink[], allNodes: GraphNode[]): Array<{ targetId: string; targetLabel: string; targetGroup: string; relation: string }> {
+  const relations: Array<{ targetId: string; targetLabel: string; targetGroup: string; relation: string }> = [];
+  allLinks.forEach((link) => {
+    const srcId = typeof link.source === "string" ? link.source : link.source.id;
+    const tgtId = typeof link.target === "string" ? link.target : link.target.id;
+    if (srcId === nodeId) {
+      const targetNode = allNodes.find((n) => n.id === tgtId);
+      if (targetNode) relations.push({ targetId: tgtId, targetLabel: targetNode.label, targetGroup: targetNode.group, relation: (link as any).relation || "verbunden" });
+    }
+    if (tgtId === nodeId) {
+      const sourceNode = allNodes.find((n) => n.id === srcId);
+      if (sourceNode) relations.push({ targetId: srcId, targetLabel: sourceNode.label, targetGroup: sourceNode.group, relation: (link as any).relation || "verbunden" });
+    }
+  });
+  return relations;
+}
 
 // --- Component ---
 export default function KnowledgeGraph() {
@@ -617,6 +702,13 @@ export default function KnowledgeGraph() {
     };
   }, []);
 
+  // Compute relations for hovered node using the ORIGINAL arrays
+  const hoveredRelations = hoveredNode
+    ? getNodeRelations(hoveredNode.id, links, nodes)
+    : [];
+  const displayedRelations = hoveredRelations.slice(0, 6);
+  const extraRelationsCount = hoveredRelations.length - 6;
+
   return (
     <div
       ref={containerRef}
@@ -634,7 +726,7 @@ export default function KnowledgeGraph() {
       {/* Tooltip */}
       {hoveredNode && (
         <div
-          className="pointer-events-none absolute z-30 max-w-xs"
+          className="pointer-events-none absolute z-30 max-w-sm"
           style={{
             left: tooltipPos.x,
             top: tooltipPos.y,
@@ -649,23 +741,55 @@ export default function KnowledgeGraph() {
               backdropFilter: "blur(12px)",
             }}
           >
-            <div className="flex items-center gap-2 mb-1">
-              <div
-                className="h-2 w-2 rounded-full"
-                style={{
-                  background: groupColors[hoveredNode.group] || "#6366f1",
-                }}
-              />
-              <span
-                className="text-xs font-medium uppercase tracking-wider"
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  color: groupColors[hoveredNode.group] || "#6366f1",
-                }}
-              >
-                {hoveredNode.group}
-              </span>
+            {/* Header: Group tag + Confidence bar */}
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <div className="flex items-center gap-2">
+                <div
+                  className="h-2 w-2 rounded-full"
+                  style={{
+                    background: groupColors[hoveredNode.group] || "#6366f1",
+                  }}
+                />
+                <span
+                  className="text-xs font-medium uppercase tracking-wider"
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    color: groupColors[hoveredNode.group] || "#6366f1",
+                  }}
+                >
+                  {hoveredNode.group}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="text-xs"
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    color: "rgba(245, 240, 232, 0.6)",
+                  }}
+                >
+                  {hoveredNode.confidence.toFixed(2)}
+                </span>
+                <div
+                  className="rounded-full overflow-hidden"
+                  style={{
+                    width: "80px",
+                    height: "4px",
+                    background: "rgba(255, 255, 255, 0.1)",
+                  }}
+                >
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${hoveredNode.confidence * 100}%`,
+                      background: validationColors[hoveredNode.validation] || "#6366f1",
+                    }}
+                  />
+                </div>
+              </div>
             </div>
+
+            {/* Title */}
             <h4
               className="text-sm font-semibold mb-1"
               style={{
@@ -675,14 +799,18 @@ export default function KnowledgeGraph() {
             >
               {hoveredNode.label}
             </h4>
+
+            {/* Description */}
             <p
               className="text-xs leading-relaxed mb-2"
               style={{ color: "rgba(245, 240, 232, 0.7)" }}
             >
               {hoveredNode.description}
             </p>
+
+            {/* Details */}
             {hoveredNode.details && (
-              <ul className="space-y-0.5">
+              <ul className="space-y-0.5 mb-2">
                 {hoveredNode.details.map((detail, i) => (
                   <li
                     key={i}
@@ -702,6 +830,63 @@ export default function KnowledgeGraph() {
                   </li>
                 ))}
               </ul>
+            )}
+
+            {/* Validation badge */}
+            <div className="mb-2">
+              <span
+                className="inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-xs"
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  background: `${validationColors[hoveredNode.validation] || "#6366f1"}26`,
+                  color: validationColors[hoveredNode.validation] || "#6366f1",
+                }}
+              >
+                {validationIcons[hoveredNode.validation] || "●"} {hoveredNode.validation}
+              </span>
+            </div>
+
+            {/* Relations */}
+            {hoveredRelations.length > 0 && (
+              <div>
+                <span
+                  className="block text-xs mb-1.5"
+                  style={{
+                    color: "rgba(245, 240, 232, 0.4)",
+                    fontFamily: "'JetBrains Mono', monospace",
+                  }}
+                >
+                  Relationen:
+                </span>
+                <div className="flex flex-wrap gap-1">
+                  {displayedRelations.map((rel, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs"
+                      style={{
+                        background: `${groupColors[rel.targetGroup] || "#6366f1"}26`,
+                        color: "rgba(245, 240, 232, 0.7)",
+                      }}
+                    >
+                      <span style={{ color: "rgba(245, 240, 232, 0.4)" }}>{rel.relation}</span>
+                      <span style={{ color: "rgba(245, 240, 232, 0.4)" }}>&rarr;</span>
+                      {rel.targetLabel}
+                    </span>
+                  ))}
+                  {extraRelationsCount > 0 && (
+                    <span
+                      className="inline-flex items-center rounded px-1.5 py-0.5 text-xs"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.05)",
+                        color: "rgba(245, 240, 232, 0.4)",
+                        fontFamily: "'JetBrains Mono', monospace",
+                      }}
+                    >
+                      +{extraRelationsCount}
+                    </span>
+                  )}
+                </div>
+              </div>
             )}
           </div>
         </div>
