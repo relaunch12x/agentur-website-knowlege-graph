@@ -1,0 +1,279 @@
+---
+export const prerender = true;
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.tsx";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Kontakt — Relaunch12x"
+  description="Starten Sie Ihr Projekt mit einem unverbindlichen Erstgespräch. Wir antworten innerhalb von 24 Stunden."
+>
+  <Nav currentPath="/kontakt" />
+
+  <!-- Hero + Contact Split -->
+  <section
+    class="section-dark grain-overlay relative overflow-hidden"
+    style="padding-top: clamp(140px, 18vw, 240px); padding-bottom: var(--spacing-section);"
+  >
+    <!-- Dot Grid Background -->
+    <div class="dot-grid absolute inset-0 -z-10"></div>
+
+    <!-- UV Glow Accent -->
+    <div
+      class="absolute top-1/4 right-0 -z-10"
+      style="width: 500px; height: 500px; background: radial-gradient(circle, rgba(36, 0, 229, 0.12) 0%, transparent 70%); filter: blur(60px);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="container-wide relative z-10">
+      <!-- Section Label -->
+      <span class="section-label mb-6 block reveal-on-scroll">Kontakt</span>
+
+      <!-- Split Layout -->
+      <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+
+        <!-- Left: Info -->
+        <div class="reveal-on-scroll">
+          <h1
+            class="mb-8"
+            style="font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem); color: var(--color-sand);"
+          >
+            Lassen Sie uns<br />
+            <em>sprechen</em>.
+          </h1>
+
+          <p
+            class="mb-12 max-w-md"
+            style="color: rgba(245, 240, 232, 0.6); line-height: 1.7; font-size: 1.0625rem;"
+          >
+            Ein Erstgespräch dauert 30 Minuten. Kein Pitch, kein Verkauf — nur die richtigen Fragen, um zu verstehen, wo Sie stehen und wohin Sie wollen.
+          </p>
+
+          <!-- Contact Details -->
+          <div style="display: flex; flex-direction: column; gap: 24px; margin-bottom: 48px;">
+            <!-- Email -->
+            <div style="display: flex; align-items: flex-start; gap: 16px;">
+              <div
+                style="flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(36, 0, 229, 0.1); border-radius: var(--radius-md);"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-ultraviolett-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </div>
+              <div>
+                <p style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(245, 240, 232, 0.4); margin-bottom: 4px;">E-Mail</p>
+                <a
+                  href="mailto:hallo@relaunch12x.de"
+                  style="color: var(--color-sand); text-decoration: none; font-size: 0.9375rem; transition: color 300ms;"
+                  onmouseover="this.style.color='var(--color-ultraviolett)'"
+                  onmouseout="this.style.color='var(--color-sand)'"
+                >
+                  hallo@relaunch12x.de
+                </a>
+              </div>
+            </div>
+
+            <!-- LinkedIn -->
+            <div style="display: flex; align-items: flex-start; gap: 16px;">
+              <div
+                style="flex-shrink: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(36, 0, 229, 0.1); border-radius: var(--radius-md);"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-ultraviolett-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
+                </svg>
+              </div>
+              <div>
+                <p style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(245, 240, 232, 0.4); margin-bottom: 4px;">LinkedIn</p>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="color: var(--color-sand); text-decoration: none; font-size: 0.9375rem; transition: color 300ms;"
+                  onmouseover="this.style.color='var(--color-ultraviolett)'"
+                  onmouseout="this.style.color='var(--color-sand)'"
+                >
+                  Relaunch12x auf LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust Signals -->
+          <div
+            style="padding: 24px; background: rgba(245, 240, 232, 0.04); border: 1px solid rgba(245, 240, 232, 0.08); border-radius: var(--radius-lg);"
+          >
+            <p
+              style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(245, 240, 232, 0.4); margin-bottom: 16px;"
+            >
+              Was Sie erwartet
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+              <li style="display: flex; align-items: center; gap: 10px; color: rgba(245, 240, 232, 0.7); font-size: 0.9375rem;">
+                <span style="color: var(--color-ultraviolett-text); font-size: 1.125rem;">&#10003;</span>
+                30-minütiges Erstgespräch, kostenlos
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; color: rgba(245, 240, 232, 0.7); font-size: 0.9375rem;">
+                <span style="color: var(--color-ultraviolett-text); font-size: 1.125rem;">&#10003;</span>
+                Kein Verkaufsgespräch, nur Substanz
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; color: rgba(245, 240, 232, 0.7); font-size: 0.9375rem;">
+                <span style="color: var(--color-ultraviolett-text); font-size: 1.125rem;">&#10003;</span>
+                Antwort innerhalb von 24 Stunden
+              </li>
+              <li style="display: flex; align-items: center; gap: 10px; color: rgba(245, 240, 232, 0.7); font-size: 0.9375rem;">
+                <span style="color: var(--color-ultraviolett-text); font-size: 1.125rem;">&#10003;</span>
+                Unverbindlich — keine versteckten Kosten
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal-on-scroll" style="animation-delay: 100ms;">
+          <div
+            style="padding: clamp(24px, 4vw, 40px); background: rgba(245, 240, 232, 0.03); border: 1px solid rgba(245, 240, 232, 0.08); border-radius: var(--radius-lg);"
+          >
+            <ContactForm client:load />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section style="padding-block: var(--spacing-section); background-color: var(--color-sand);">
+    <div class="container-content">
+      <span class="section-label mb-6 block reveal-on-scroll">Häufige Fragen</span>
+      <h2 class="mb-16 reveal-on-scroll">Bevor Sie fragen</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <!-- FAQ 1 -->
+        <details class="faq-item reveal-on-scroll">
+          <summary class="faq-summary">
+            Was passiert nach dem Absenden des Formulars?
+          </summary>
+          <div class="faq-answer">
+            <p>Sie erhalten innerhalb von 24 Stunden eine persönliche Antwort per E-Mail. Darin schlagen wir einen Termin für ein 30-minütiges Erstgespräch vor — per Video oder Telefon, wie Sie möchten.</p>
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="faq-item reveal-on-scroll">
+          <summary class="faq-summary">
+            Kostet das Erstgespräch etwas?
+          </summary>
+          <div class="faq-answer">
+            <p>Nein. Das Erstgespräch ist kostenlos und unverbindlich. Wir nutzen die 30 Minuten, um zu verstehen, ob und wie wir Ihnen helfen können.</p>
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="faq-item reveal-on-scroll">
+          <summary class="faq-summary">
+            Für welche Unternehmen arbeitet ihr?
+          </summary>
+          <div class="faq-answer">
+            <p>Wir arbeiten mit B2B-Unternehmen, die wachsen wollen — aber merken, dass ihre Website und ihr Marketing nicht mithalten. Typischerweise 10-200 Mitarbeitende, oft technisch oder beratungsnah.</p>
+          </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="faq-item reveal-on-scroll">
+          <summary class="faq-summary">
+            Was unterscheidet euch von anderen Agenturen?
+          </summary>
+          <div class="faq-answer">
+            <p>Wir raten nicht — wir testen. Jede Entscheidung basiert auf Daten, nicht auf Meinungen. Unser System erfasst Ihr Unternehmenswissen, validiert Annahmen und verwandelt Erkenntnisse in messbares Wachstum.</p>
+          </div>
+        </details>
+
+        <!-- FAQ 5 -->
+        <details class="faq-item reveal-on-scroll">
+          <summary class="faq-summary">
+            Wie schnell kann es losgehen?
+          </summary>
+          <div class="faq-answer">
+            <p>Nach dem Erstgespräch erhalten Sie innerhalb weniger Tage ein Angebot. Der eigentliche Projektstart ist abhängig von unserer Kapazität — in der Regel innerhalb von 2-4 Wochen.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  h1 em {
+    color: var(--color-ultraviolett);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* FAQ Styles */
+  .faq-item {
+    border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid rgba(26, 26, 26, 0.08);
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 600;
+    color: var(--color-ink);
+    list-style: none;
+    transition: color var(--duration-normal) var(--ease-default);
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-summary::after {
+    content: "+";
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-ultraviolett);
+    transition: transform var(--duration-normal) var(--ease-smooth);
+  }
+
+  details[open] .faq-summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-summary:hover {
+    color: var(--color-ultraviolett);
+  }
+
+  .faq-answer {
+    padding-bottom: 24px;
+  }
+
+  .faq-answer p {
+    color: var(--color-ink-light);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  /* Responsive: Stack phone/company on mobile */
+  @media (max-width: 640px) {
+    :global(.contact-form-row) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

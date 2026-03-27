@@ -16,6 +16,7 @@
   --color-ink-light: #555555;
   --color-ultraviolett: #2400e5;
   --color-uv-glow: rgba(36, 0, 229, 0.15);
+  --color-ultraviolett-text: #2400e5;
   --color-white: #ffffff;
 
   /* Typography */
@@ -240,6 +241,7 @@ em {
 .section-dark {
   background-color: var(--color-ink);
   color: var(--color-sand);
+  --color-ultraviolett-text: #6b5ce7;
 }
 
 .section-dark h1,

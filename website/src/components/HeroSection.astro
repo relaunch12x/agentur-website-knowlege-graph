@@ -15,39 +15,6 @@ import KnowledgeGraph from "./KnowledgeGraph";
 
   <!-- Content -->
   <div class="container-wide relative z-10 flex min-h-screen flex-col justify-center pt-24 pb-16">
-    <!-- Nav -->
-    <nav
-      class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5"
-      style="background: rgba(26, 26, 26, 0.8); backdrop-filter: blur(12px);"
-    >
-      <a
-        href="/"
-        class="text-lg font-bold tracking-tight"
-        style="font-family: var(--font-mono); color: var(--color-sand);"
-      >
-        relaunch<span style="color: var(--color-ultraviolett);">12x</span>
-      </a>
-      <div class="flex items-center gap-6">
-        <a
-          href="/ueber-uns"
-          class="hidden sm:inline text-sm font-medium transition-colors duration-200"
-          style="color: var(--color-sand); opacity: 0.6;"
-          onmouseover="this.style.opacity='1'"
-          onmouseout="this.style.opacity='0.6'"
-        >
-          Über uns
-        </a>
-        <a
-          href="#kontakt"
-          class="rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
-          style="background: var(--color-ultraviolett); color: var(--color-sand);"
-          onclick="window.posthog?.capture('erstgespraech_cta_clicked', { source: 'hero_nav' })"
-        >
-          Erstgespräch buchen
-        </a>
-      </div>
-    </nav>
-
     <!-- Hero Content -->
     <div class="flex flex-col items-center text-center">
       <!-- Section Label -->
@@ -74,7 +41,7 @@ import KnowledgeGraph from "./KnowledgeGraph";
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-4 mb-16 hero-animate hero-delay-4">
         <a
-          href="#kontakt"
+          href="/kontakt"
           class="rounded-lg px-8 py-3.5 text-base font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
           style="background: var(--color-ultraviolett); color: var(--color-sand);"
           onclick="window.posthog?.capture('erstgespraech_cta_clicked', { source: 'hero_primary' })"

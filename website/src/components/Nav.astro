@@ -1,0 +1,50 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "" } = Astro.props;
+const isUeberUns = currentPath === "/ueber-uns";
+const isKontakt = currentPath === "/kontakt";
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5"
+  style="background: rgba(26, 26, 26, 0.8); backdrop-filter: blur(12px);"
+>
+  <a
+    href="/"
+    class="text-lg font-bold tracking-tight"
+    style="font-family: var(--font-mono); color: var(--color-sand);"
+  >
+    relaunch<span style="color: var(--color-ultraviolett);">12x</span>
+  </a>
+  <div class="flex items-center gap-6">
+    <a
+      href="/ueber-uns"
+      class="hidden sm:inline text-sm font-medium transition-colors duration-200"
+      style={`color: var(--color-sand); opacity: ${isUeberUns ? "1" : "0.6"};`}
+      onmouseover="this.style.opacity='1'"
+      onmouseout={`this.style.opacity='${isUeberUns ? "1" : "0.6"}'`}
+    >
+      Über uns
+    </a>
+    {isKontakt ? (
+      <span
+        class="rounded-lg px-5 py-2.5 text-sm font-medium"
+        style="background: var(--color-ultraviolett); color: var(--color-sand); opacity: 0.7; cursor: default;"
+      >
+        Erstgespräch buchen
+      </span>
+    ) : (
+      <a
+        href="/kontakt"
+        class="rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
+        style="background: var(--color-ultraviolett); color: var(--color-sand);"
+        onclick="window.posthog?.capture('erstgespraech_cta_clicked', { source: 'nav' })"
+      >
+        Erstgespräch buchen
+      </a>
+    )}
+  </div>
+</nav>
