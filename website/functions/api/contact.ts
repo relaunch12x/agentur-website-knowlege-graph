@@ -33,57 +33,55 @@ async function computeHmac(payload: string, secret: string): Promise<string> {
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { request, env } = context;
-
-  if (!env.WEBHOOK_SECRET) {
-    return new Response(JSON.stringify({ error: 'Webhook nicht konfiguriert' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  let formData: ContactPayload;
   try {
-    formData = await request.json();
-  } catch {
-    return new Response(JSON.stringify({ error: 'Ungültiges JSON' }), {
-      status: 400,
+    const { request, env } = context;
+
+    if (!env.WEBHOOK_SECRET) {
+      return Response.json({ error: 'Webhook nicht konfiguriert' }, { status: 500 });
+    }
+
+    let formData: ContactPayload;
+    try {
+      formData = await request.json();
+    } catch {
+      return Response.json({ error: 'Ungültiges JSON' }, { status: 400 });
+    }
+
+    if (!formData.name || !formData.email) {
+      return Response.json({ error: 'Name und E-Mail sind Pflichtfelder' }, { status: 400 });
+    }
+
+    const webhookBody = JSON.stringify({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || undefined,
+      company_name: formData.company_name || undefined,
+      message: formData.message || undefined,
+      source_url: new URL(request.url).origin,
+      timestamp: new Date().toISOString(),
+    });
+
+    const signature = await computeHmac(webhookBody, env.WEBHOOK_SECRET);
+
+    const res = await fetch('https://onboarding.relaunch12x.agency/api/crm/webhook/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Webhook-Signature': signature,
+      },
+      body: webhookBody,
+    });
+
+    const data = await res.text();
+
+    return new Response(data, {
+      status: res.status,
       headers: { 'Content-Type': 'application/json' },
     });
+  } catch (err) {
+    return Response.json(
+      { error: 'Interner Fehler', detail: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
   }
-
-  if (!formData.name || !formData.email) {
-    return new Response(JSON.stringify({ error: 'Name und E-Mail sind Pflichtfelder' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  const webhookBody = JSON.stringify({
-    name: formData.name,
-    email: formData.email,
-    phone: formData.phone || undefined,
-    company_name: formData.company_name || undefined,
-    message: formData.message || undefined,
-    source_url: new URL(request.url).origin,
-    timestamp: new Date().toISOString(),
-  });
-
-  const signature = await computeHmac(webhookBody, env.WEBHOOK_SECRET);
-
-  const res = await fetch('https://onboarding.relaunch12x.agency/api/crm/webhook/contact', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Webhook-Signature': signature,
-    },
-    body: webhookBody,
-  });
-
-  const data = await res.text();
-
-  return new Response(data, {
-    status: res.status,
-    headers: { 'Content-Type': 'application/json' },
-  });
 };
