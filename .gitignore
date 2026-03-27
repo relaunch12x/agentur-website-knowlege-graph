@@ -10,6 +10,9 @@
 # Allow website folder
 !/website/
 
+# Allow functions folder (Cloudflare Pages Functions)
+!/functions/
+
 # Inside website: standard ignores
 website/node_modules/
 website/dist/
