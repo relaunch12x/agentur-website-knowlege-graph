@@ -18,7 +18,7 @@ export default function ContactForm() {
     setErrorMsg('');
 
     try {
-      const res = await fetch('https://onboarding.relaunch12x.agency/api/crm/webhook/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -27,8 +27,6 @@ export default function ContactForm() {
           phone: phone || undefined,
           company_name: companyName || undefined,
           message: message || undefined,
-          source_url: window.location.origin,
-          timestamp: new Date().toISOString(),
         }),
       });
 
