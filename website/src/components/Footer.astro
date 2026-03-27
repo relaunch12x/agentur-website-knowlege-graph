@@ -1,0 +1,101 @@
+---
+---
+
+<footer class="relative" style="background-color: #0a0a0a; color: rgba(245, 240, 232, 0.4);">
+  <div class="container-wide" style="padding-block: clamp(64px, 8vw, 80px);">
+
+    <!-- Top: Logo + Tagline -->
+    <div class="mb-16">
+      <a
+        href="/"
+        class="text-lg font-bold tracking-tight"
+        style="font-family: var(--font-mono); color: rgba(245, 240, 232, 0.6);"
+      >
+        relaunch<span style="color: var(--color-ultraviolett);">12x</span>
+      </a>
+      <p
+        class="mt-2"
+        style="font-family: var(--font-serif); font-style: italic; font-size: 0.875rem; color: rgba(245, 240, 232, 0.3);"
+      >
+        From 1 to X.
+      </p>
+    </div>
+
+    <!-- Middle: 3 Columns -->
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8">
+
+      <!-- Column 1: Kontakt -->
+      <div>
+        <h4 class="footer-col-header">Kontakt</h4>
+        <ul class="footer-links">
+          <li>
+            <a href="mailto:hallo@relaunch12x.de">hallo@relaunch12x.de</a>
+          </li>
+          <li>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Rechtliches -->
+      <div>
+        <h4 class="footer-col-header">Rechtliches</h4>
+        <ul class="footer-links">
+          <li><a href="/impressum">Impressum</a></li>
+          <li><a href="/datenschutz">Datenschutz</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: System -->
+      <div>
+        <h4 class="footer-col-header">System</h4>
+        <ul class="footer-links">
+          <li><a href="/#knowledge-graph">Knowledge Graph</a></li>
+          <li><a href="/#prozess">Prozess</a></li>
+          <li><a href="/#investition">Investition</a></li>
+          <li><a href="/ueber-uns">Über uns</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="mt-16 mb-8" style="border: none; border-top: 1px solid rgba(245, 240, 232, 0.08);" />
+
+    <!-- Bottom: Copyright -->
+    <p style="font-family: var(--font-mono); font-size: 0.75rem; color: rgba(245, 240, 232, 0.25);">
+      &copy; 2026 Relaunch12x
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer-col-header {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(245, 240, 232, 0.6);
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .footer-links a {
+    color: rgba(245, 240, 232, 0.4);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color var(--duration-normal) var(--ease-default);
+  }
+
+  .footer-links a:hover {
+    color: var(--color-sand);
+  }
+</style>

@@ -1,0 +1,206 @@
+---
+/**
+ * WarumJetztSection — AI urgency argument. Contrast split:
+ * Left dark ("Unternehmen die warten"), right light ("Unternehmen die strukturieren").
+ * Shows the exponential divergence visually.
+ */
+---
+
+<section class="relative overflow-hidden">
+  <div class="split-container">
+
+    <!-- LEFT: Dark — "Die warten" -->
+    <div class="split-left section-dark dot-grid">
+      <div class="split-content reveal-on-scroll">
+        <span
+          class="section-label mb-6 block"
+          style="color: rgba(245, 240, 232, 0.4);"
+        >
+          Ohne System
+        </span>
+
+        <h2 class="split-headline" style="color: var(--color-sand);">
+          Wer wartet, baut AI auf <em>Annahmen</em>.
+        </h2>
+
+        <div class="split-body" style="color: rgba(245, 240, 232, 0.55);">
+          <p>
+            Schnellere Vermutungen statt besserer Entscheidungen.
+          </p>
+          <p>
+            Content aus ChatGPT ohne Kontext. Lead-Scoring ohne validierte Personas.
+            Personalisierung ohne strukturiertes Wissen.
+          </p>
+        </div>
+
+        <!-- Diverging line: flat/declining -->
+        <div class="split-visual">
+          <svg viewBox="0 0 280 80" fill="none" width="280" height="80" class="diverge-svg">
+            <path
+              d="M0 40 Q70 38 140 42 Q210 46 280 55"
+              stroke="rgba(245, 240, 232, 0.15)"
+              stroke-width="2"
+              fill="none"
+            />
+            <text x="250" y="70" fill="rgba(245, 240, 232, 0.25)" font-family="'JetBrains Mono', monospace" font-size="10">
+              stagniert
+            </text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Light — "Die strukturieren" -->
+    <div class="split-right" style="background: var(--color-sand);">
+      <div class="split-content reveal-on-scroll">
+        <span class="section-label mb-6 block">Mit System</span>
+
+        <h2 class="split-headline" style="color: var(--color-ink);">
+          Wer jetzt strukturiert, nutzt AI als <em>Hebel</em>.
+        </h2>
+
+        <div class="split-body" style="color: var(--color-ink-light);">
+          <p>
+            Jede Woche mehr Daten. Bessere Entscheidungen. Schnellere Ergebnisse.
+          </p>
+          <p>
+            Content-Pipelines die auf <em>Fakten</em> zugreifen. AI-Workflows die dein
+            Unternehmen verstehen. Der Compound-Effekt setzt ein.
+          </p>
+        </div>
+
+        <!-- Diverging line: exponential growth -->
+        <div class="split-visual">
+          <svg viewBox="0 0 280 80" fill="none" width="280" height="80" class="diverge-svg">
+            <path
+              d="M0 60 Q70 55 140 42 Q210 22 280 5"
+              stroke="var(--color-ultraviolett)"
+              stroke-width="2"
+              fill="none"
+              opacity="0.6"
+            />
+            <text x="220" y="20" fill="var(--color-ultraviolett)" opacity="0.5" font-family="'JetBrains Mono', monospace" font-size="10">
+              exponentiell
+            </text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom banner -->
+  <div class="bottom-banner section-dark">
+    <div class="container-wide">
+      <p class="banner-text reveal-on-scroll">
+        Die Schere zwischen beiden Gruppen wächst nicht linear.
+        Sie wächst <em>exponentiell</em>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Split Container */
+  .split-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  @media (min-width: 768px) {
+    .split-container {
+      flex-direction: row;
+    }
+  }
+
+  .split-left,
+  .split-right {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .split-content {
+    padding: clamp(48px, 8vw, 100px) clamp(24px, 5vw, 80px);
+    max-width: 560px;
+  }
+
+  .split-left .split-content {
+    margin-left: auto;
+  }
+
+  .split-right .split-content {
+    margin-right: auto;
+  }
+
+  /* Headlines */
+  .split-headline {
+    font-size: clamp(1.5rem, 2.5vw + 0.25rem, 2.25rem);
+    line-height: 1.25;
+    margin-bottom: clamp(16px, 2vw, 24px);
+  }
+
+  .split-headline em {
+    font-weight: 400;
+  }
+
+  .split-left .split-headline em {
+    color: rgba(245, 240, 232, 0.7);
+  }
+
+  .split-right .split-headline em {
+    color: var(--color-ultraviolett);
+  }
+
+  /* Body */
+  .split-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .split-body p {
+    font-size: clamp(0.9375rem, 1vw, 1.0625rem);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .split-body em {
+    color: inherit;
+    font-weight: 400;
+  }
+
+  .split-right .split-body em {
+    color: var(--color-ink);
+  }
+
+  /* Visual: diverging lines */
+  .split-visual {
+    margin-top: clamp(24px, 3vw, 40px);
+  }
+
+  .diverge-svg {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  /* Bottom Banner */
+  .bottom-banner {
+    padding: clamp(24px, 3vw, 40px) 0;
+    text-align: center;
+  }
+
+  .banner-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: rgba(245, 240, 232, 0.7);
+    margin: 0;
+  }
+
+  .banner-text em {
+    color: var(--color-ultraviolett);
+    font-weight: 400;
+  }
+</style>

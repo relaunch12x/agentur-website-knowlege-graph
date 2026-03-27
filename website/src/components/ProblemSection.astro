@@ -1,0 +1,254 @@
+---
+/**
+ * ProblemSection — Names the problems concretely. Each problem is a recognizable
+ * "symptom" that resonates with the three personas. Builds to AI kicker.
+ */
+---
+
+<section
+  class="grain-overlay relative overflow-hidden"
+  style="background-color: var(--color-sand);"
+>
+  <div
+    class="container-wide"
+    style="padding-top: clamp(80px, 12vw, 180px); padding-bottom: clamp(80px, 12vw, 180px);"
+  >
+    <!-- Header -->
+    <div class="reveal-on-scroll" style="max-width: 720px;">
+      <span class="section-label mb-6 block">Das Problem</span>
+      <h2 class="mb-4" style="color: var(--color-ink);">
+        Dein Wissen steckt in Köpfen. Nicht auf deiner Website.
+      </h2>
+      <p style="color: var(--color-ink-light); margin-bottom: clamp(48px, 6vw, 80px); max-width: 560px;">
+        Kommt dir das bekannt vor?
+      </p>
+    </div>
+
+    <!-- Problem Grid: 2x3 on desktop, stacked on mobile -->
+    <div class="problem-grid">
+
+      <!-- Problem 1: Entscheidungen auf Annahmen -->
+      <div class="problem-card reveal-on-scroll">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" class="problem-icon-svg">
+            <circle cx="12" cy="12" r="10" stroke-dasharray="4 3" />
+            <path d="M12 8v4M12 16h.01" />
+          </svg>
+        </div>
+        <h3 class="problem-title">Entscheidungen auf Annahmen</h3>
+        <p class="problem-text">
+          Dein Team weiß, warum Kunden kaufen. Aber niemand hat es aufgeschrieben.
+          Was davon ist ein <em>Fakt</em> — und was eine <em>Annahme</em>?
+        </p>
+      </div>
+
+      <!-- Problem 2: Website veraltet -->
+      <div class="problem-card reveal-on-scroll">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" class="problem-icon-svg">
+            <rect x="3" y="4" width="18" height="14" rx="2" />
+            <path d="M3 10h18" stroke-dasharray="4 3" />
+            <path d="M8 14h2M14 14h2" opacity="0.4" />
+          </svg>
+        </div>
+        <h3 class="problem-title">Website von 2021</h3>
+        <p class="problem-text">
+          Die Website sieht okay aus. Aber sie bringt keine Anfragen.
+          Ein Freelancer hat sie damals gebaut. Seitdem: Stillstand.
+        </p>
+      </div>
+
+      <!-- Problem 3: Jede Änderung dauert Wochen -->
+      <div class="problem-card reveal-on-scroll">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" class="problem-icon-svg">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+        </div>
+        <h3 class="problem-title">Jede Änderung dauert Wochen</h3>
+        <p class="problem-text">
+          Neue Landingpage? Ticket an die Agentur. Warten. Zwei Korrekturschleifen.
+          Drei Wochen später ist sie live. Vielleicht.
+        </p>
+      </div>
+
+      <!-- Problem 4: Daten in Silos -->
+      <div class="problem-card reveal-on-scroll">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" class="problem-icon-svg">
+            <rect x="2" y="3" width="7" height="7" rx="1" />
+            <rect x="15" y="3" width="7" height="7" rx="1" />
+            <rect x="2" y="14" width="7" height="7" rx="1" />
+            <rect x="15" y="14" width="7" height="7" rx="1" />
+          </svg>
+        </div>
+        <h3 class="problem-title">Daten in Silos</h3>
+        <p class="problem-text">
+          CRM hier. Analytics dort. Wissen in Köpfen. Personas in einem Google Doc,
+          das niemand findet. Alles getrennt. Nichts verbunden.
+        </p>
+      </div>
+
+      <!-- Problem 5: Strategie ist ein Dokument -->
+      <div class="problem-card reveal-on-scroll">
+        <div class="problem-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" class="problem-icon-svg">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+            <path d="M14 2v6h6" />
+            <path d="M8 13h8M8 17h5" opacity="0.4" />
+          </svg>
+        </div>
+        <h3 class="problem-title">Strategie ist ein Dokument</h3>
+        <p class="problem-text">
+          Die Positionierung steht in einem PDF von 2021. Niemand liest es.
+          Die Brand Voice? Irgendwo in einem Slide Deck. Nicht in der Website.
+        </p>
+      </div>
+
+      <!-- Problem 6: AI ohne Fundament — THE KICKER -->
+      <div class="problem-card problem-card--kicker reveal-on-scroll">
+        <div class="problem-icon problem-icon--kicker">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" class="problem-icon-svg">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <h3 class="problem-title">Und jetzt kommt AI</h3>
+        <p class="problem-text">
+          Agentic Workflows. Automatisierte Content-Pipelines. Jedes dieser Systeme
+          braucht eine Grundlage: strukturiertes, <em>validiertes</em> Wissen.
+        </p>
+        <p class="problem-kicker-line">
+          Ohne Struktur ist AI nur schnell — und <em>falsch</em>.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Problem Grid */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  @media (min-width: 640px) {
+    .problem-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .problem-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  /* Problem Card */
+  .problem-card {
+    padding: clamp(24px, 3vw, 36px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(26, 26, 26, 0.06);
+    background: rgba(255, 255, 255, 0.5);
+    transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth), border-color 300ms var(--ease-smooth);
+  }
+
+  .problem-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(26, 26, 26, 0.12);
+  }
+
+  /* Kicker Card — stands out */
+  .problem-card--kicker {
+    background: var(--color-ink);
+    border-color: rgba(36, 0, 229, 0.3);
+  }
+
+  .problem-card--kicker:hover {
+    border-color: var(--color-ultraviolett);
+    box-shadow: 0 4px 24px var(--color-uv-glow);
+  }
+
+  .problem-card--kicker .problem-title {
+    color: var(--color-sand);
+  }
+
+  .problem-card--kicker .problem-text {
+    color: rgba(245, 240, 232, 0.65);
+  }
+
+  .problem-card--kicker .problem-text em {
+    color: rgba(245, 240, 232, 0.9);
+  }
+
+  /* Icon */
+  .problem-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
+    color: var(--color-ink-light);
+    opacity: 0.5;
+  }
+
+  .problem-icon--kicker {
+    color: var(--color-ultraviolett);
+    opacity: 0.8;
+  }
+
+  .problem-icon-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Title */
+  .problem-title {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    color: var(--color-ink);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  /* Text */
+  .problem-text {
+    font-size: clamp(0.875rem, 1vw, 0.9375rem);
+    color: var(--color-ink-light);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .problem-text em {
+    color: var(--color-ink);
+  }
+
+  /* Persona Tag */
+  .problem-persona {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--color-ultraviolett);
+    opacity: 0.7;
+    letter-spacing: 0.02em;
+  }
+
+  /* Kicker Line */
+  .problem-kicker-line {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    color: rgba(245, 240, 232, 0.85);
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid rgba(245, 240, 232, 0.08);
+  }
+
+  .problem-kicker-line em {
+    color: var(--color-ultraviolett);
+  }
+</style>

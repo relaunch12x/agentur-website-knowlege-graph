@@ -1,25 +1,22 @@
-# build output
-dist/
-# generated types
-.astro/
+# Only the website/ folder should be in the repo
+# Ignore everything, then whitelist website/
 
-# dependencies
-node_modules/
+# Ignore all
+/*
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Allow gitignore itself
+!.gitignore
 
+# Allow website folder
+!/website/
 
-# environment variables
-.env
-.env.production
+# Inside website: standard ignores
+website/node_modules/
+website/dist/
+website/.astro/
+website/.env
+website/.env.production
 
-# macOS-specific files
+# OS files
 .DS_Store
-
-# jetbrains setting folder
-.idea/
-.firecrawl/
+Thumbs.db

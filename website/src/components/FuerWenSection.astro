@@ -1,0 +1,139 @@
+---
+const personas = [
+  {
+    number: "01",
+    title: "GF / Inhaber",
+    description: "Keine interne Marketing-Kompetenz. Schlechte Agentur-Erfahrungen.",
+  },
+  {
+    number: "02",
+    title: "CMO / Marketing-Leiter",
+    description: "Braucht einen datengetriebenen Partner, nicht den nächsten Dienstleister.",
+  },
+  {
+    number: "03",
+    title: "Head of Growth",
+    description: "Will ein System, das skaliert. Nicht ein Projekt, das endet.",
+  },
+];
+---
+
+<section
+  class="relative overflow-hidden"
+  style="background: #ffffff; padding-block: var(--spacing-section);"
+>
+  <div class="fuer-wen-container">
+    <!-- Section Label -->
+    <span class="section-label mb-6 block text-center reveal-on-scroll">
+      Für wen
+    </span>
+
+    <!-- Pull Quote -->
+    <blockquote class="pull-quote reveal-on-scroll">
+      Für GFs und Marketing-Leiter in B2B-Unternehmen,
+      die mit <em>Annahmen</em> statt <em>Daten</em> wachsen.
+    </blockquote>
+
+    <!-- Persona Cards -->
+    <div class="personas reveal-on-scroll-slow">
+      {personas.map((persona, i) => (
+        <div class={`persona ${i > 0 ? "persona--bordered" : ""}`}>
+          <span class="persona__number">{persona.number}</span>
+          <h3 class="persona__title">{persona.title}</h3>
+          <p class="persona__description">{persona.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Container — narrow, centered */
+  .fuer-wen-container {
+    max-width: 48rem; /* max-w-3xl */
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 64px);
+  }
+
+  /* Pull Quote */
+  .pull-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-ink);
+    line-height: 1.4;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    margin-bottom: clamp(48px, 6vw, 80px);
+  }
+
+  .pull-quote em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-ultraviolett);
+  }
+
+  /* Personas Container */
+  .personas {
+    display: flex;
+    gap: clamp(24px, 4vw, 48px);
+    justify-content: center;
+  }
+
+  /* Single Persona */
+  .persona {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .persona--bordered {
+    padding-left: clamp(24px, 4vw, 48px);
+    border-left: 1px solid rgba(26, 26, 26, 0.1);
+  }
+
+  .persona__number {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ultraviolett);
+    opacity: 0.6;
+    display: block;
+    margin-bottom: 8px;
+    line-height: 1;
+  }
+
+  .persona__title {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .persona__description {
+    font-family: var(--font-sans);
+    font-size: clamp(0.875rem, 0.5vw + 0.5rem, 0.9375rem);
+    color: var(--color-ink-light);
+    line-height: 1.55;
+  }
+
+  /* Mobile: stack vertically, horizontal dividers */
+  @media (max-width: 767px) {
+    .personas {
+      flex-direction: column;
+      gap: clamp(20px, 4vw, 32px);
+    }
+
+    .persona--bordered {
+      padding-left: 0;
+      border-left: none;
+      padding-top: clamp(20px, 4vw, 32px);
+      border-top: 1px solid rgba(26, 26, 26, 0.1);
+    }
+  }
+</style>

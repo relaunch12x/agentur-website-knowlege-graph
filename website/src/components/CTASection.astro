@@ -1,0 +1,148 @@
+---
+---
+
+<section id="kontakt" class="section-dark grain-overlay relative overflow-hidden" style="padding-block: clamp(100px, 15vw, 220px);">
+  <!-- Generative UV Blob -->
+  <div class="cta-blob-wrapper" aria-hidden="true">
+    <svg
+      class="cta-blob"
+      viewBox="0 0 600 600"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+    >
+      <defs>
+        <radialGradient id="blob-gradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="var(--color-ultraviolett)" stop-opacity="0.2" />
+          <stop offset="60%" stop-color="var(--color-ultraviolett)" stop-opacity="0.08" />
+          <stop offset="100%" stop-color="var(--color-ultraviolett)" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <path
+        d="M300,80 C380,80 460,120 500,180 C540,240 560,300 540,360 C520,420 480,470 420,500 C360,530 300,540 240,520 C180,500 120,460 90,400 C60,340 50,280 70,220 C90,160 140,110 200,90 C240,76 270,78 300,80 Z"
+        fill="url(#blob-gradient)"
+      />
+      <path
+        d="M310,120 C370,115 440,150 480,210 C520,270 530,330 500,390 C470,450 410,480 350,490 C290,500 230,490 180,450 C130,410 100,350 100,290 C100,230 130,170 180,140 C220,115 260,118 310,120 Z"
+        fill="url(#blob-gradient)"
+        opacity="0.6"
+      />
+    </svg>
+  </div>
+
+  <!-- Dot Grid -->
+  <div class="dot-grid absolute inset-0 -z-10"></div>
+
+  <!-- Content -->
+  <div class="container-content relative z-10 flex flex-col items-center text-center">
+    <!-- Section Label -->
+    <span class="section-label mb-8 reveal-on-scroll">Bereit?</span>
+
+    <!-- Headline -->
+    <h2 class="cta-headline mb-8 max-w-3xl reveal-on-scroll" style="color: var(--color-sand);">
+      Andere launchen und <em>hoffen</em>.<br />
+      Wir launchen und <em>testen</em>.
+    </h2>
+
+    <!-- Subline -->
+    <p
+      class="mb-12 max-w-xl reveal-on-scroll"
+      style="color: rgba(245, 240, 232, 0.6); line-height: 1.7;"
+    >
+      Ein Erstgespräch. 30 Minuten. Kein Pitch — nur die richtigen Fragen.
+    </p>
+
+    <!-- CTA Button -->
+    <a
+      href="#kontakt"
+      class="cta-button reveal-on-scroll"
+      onclick="window.posthog?.capture('erstgespraech_cta_clicked', { source: 'cta_section' })"
+    >
+      Erstgespräch buchen
+    </a>
+
+    <!-- Trust line -->
+    <p
+      class="mt-6 reveal-on-scroll"
+      style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.05em; color: rgba(245, 240, 232, 0.35);"
+    >
+      Kostenfrei. Unverbindlich. Kein Verkaufsgespräch.
+    </p>
+  </div>
+</section>
+
+<style>
+  /* --- CTA Headline --- */
+  .cta-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-headline em {
+    color: var(--color-ultraviolett);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* --- UV Blob --- */
+  .cta-blob-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .cta-blob {
+    width: clamp(400px, 60vw, 700px);
+    height: auto;
+    animation: blob-pulse 6s ease-in-out infinite;
+  }
+
+  @keyframes blob-pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  /* --- CTA Button --- */
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--color-ultraviolett);
+    color: var(--color-sand);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition:
+      transform var(--duration-normal) var(--ease-smooth),
+      box-shadow var(--duration-normal) var(--ease-smooth);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 4px 24px rgba(36, 0, 229, 0.4),
+      0 0 60px rgba(36, 0, 229, 0.15);
+  }
+
+  .cta-button:active {
+    transform: translateY(0);
+  }
+
+  /* --- Reduced Motion --- */
+  @media (prefers-reduced-motion: reduce) {
+    .cta-blob {
+      animation: none;
+    }
+  }
+</style>

@@ -1,0 +1,294 @@
+---
+/**
+ * LoesungSection — Shows the solution/approach: the Knowledge Graph system.
+ * Dark background (#1A1A1A) with dot-grid pattern. 50/50 split.
+ */
+---
+
+<section class="section-dark dot-grid relative overflow-hidden">
+  <div
+    class="container-wide"
+    style="padding-top: clamp(80px, 12vw, 180px); padding-bottom: clamp(80px, 12vw, 180px);"
+  >
+    <div class="flex flex-col lg:flex-row-reverse items-start gap-12 lg:gap-16">
+
+      <!-- Text — Right 50% -->
+      <div class="w-full lg:w-1/2 reveal-on-scroll">
+        <span class="section-label mb-6 block">Der Ansatz</span>
+
+        <h2 class="mb-8" style="color: var(--color-sand);">
+          Wir fangen nicht mit Design an. Wir fangen mit deinem Wissen an.
+        </h2>
+
+        <p
+          class="mb-10"
+          style="color: rgba(245, 240, 232, 0.75); max-width: 520px;"
+        >
+          Alles fließt in einen <em style="color: var(--color-sand);">Knowledge Graph</em>.
+          Daraus leiten wir ab, was Fakt ist und was Annahme.
+          Positionierung, Messaging, Design, Content — alles entsteht aus validiertem Wissen.
+          Nicht aus Vermutungen.
+        </p>
+
+        <!-- Step List -->
+        <ol class="step-list" role="list">
+          <li class="step-item reveal-on-scroll stagger-1">
+            <span class="step-number">01</span>
+            <span class="step-separator">—</span>
+            <span class="step-text">Wissen erfassen (bestehende Dokumente, Interviews, gezielte Rückfragen)</span>
+          </li>
+          <li class="step-item reveal-on-scroll stagger-2">
+            <span class="step-number">02</span>
+            <span class="step-separator">—</span>
+            <span class="step-text">Strukturieren im Knowledge Graph</span>
+          </li>
+          <li class="step-item reveal-on-scroll stagger-3">
+            <span class="step-number">03</span>
+            <span class="step-separator">—</span>
+            <span class="step-text">Fakten von Annahmen trennen</span>
+          </li>
+          <li class="step-item reveal-on-scroll stagger-4">
+            <span class="step-number">04</span>
+            <span class="step-separator">—</span>
+            <span class="step-text">Strategie, Design, Content ableiten</span>
+          </li>
+          <li class="step-item reveal-on-scroll stagger-5">
+            <span class="step-number">05</span>
+            <span class="step-separator">—</span>
+            <span class="step-text">Launchen, testen, lernen, zurückspeisen</span>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Visual — Left 50%: Flow Diagram SVG -->
+      <div class="w-full lg:w-1/2 reveal-on-scroll-slow">
+        <div class="flow-diagram-container">
+          <svg
+            viewBox="0 0 480 380"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="flow-diagram"
+            aria-label="Flow-Diagramm: Von Wissenserfassung über den Knowledge Graph zu Website, SEO, Content und Messaging"
+            role="img"
+          >
+            <!-- Stage 1: Input — "Deine Daten" -->
+            <g class="flow-stage flow-stage-input">
+              <rect
+                x="20" y="140"
+                width="120" height="80"
+                rx="8"
+                fill="none"
+                stroke="rgba(245,240,232,0.2)"
+                stroke-width="1.5"
+              />
+              <!-- Document icon -->
+              <path
+                d="M62 162 L62 178 C62 179.1 62.9 180 64 180 L76 180 C77.1 180 78 179.1 78 178 L78 167 L73 162 L64 162 C62.9 162 62 162.9 62 164 Z"
+                fill="none"
+                stroke="rgba(245,240,232,0.5)"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M73 162 L73 167 L78 167"
+                fill="none"
+                stroke="rgba(245,240,232,0.5)"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- Lines on doc -->
+              <line x1="66" y1="170" x2="74" y2="170" stroke="rgba(245,240,232,0.3)" stroke-width="1" />
+              <line x1="66" y1="174" x2="72" y2="174" stroke="rgba(245,240,232,0.3)" stroke-width="1" />
+              <!-- Label -->
+              <text
+                x="80" y="199"
+                text-anchor="middle"
+                font-family="var(--font-mono)"
+                font-size="11"
+                font-weight="700"
+                fill="rgba(245,240,232,0.7)"
+              >Deine Daten</text>
+            </g>
+
+            <!-- Connecting Line 1 -->
+            <line
+              x1="140" y1="180"
+              x2="185" y2="190"
+              class="flow-line"
+              stroke="var(--color-ink-light)"
+              stroke-width="1.5"
+            />
+
+            <!-- Stage 2: Center — Knowledge Graph (Hexagon) -->
+            <g class="flow-stage flow-stage-center">
+              <!-- Glow behind -->
+              <circle cx="280" cy="190" r="72" fill="var(--color-uv-glow)" />
+              <circle cx="280" cy="190" r="52" fill="rgba(36,0,229,0.08)" />
+              <!-- Hexagon -->
+              <polygon
+                points="280,130 332,160 332,220 280,250 228,220 228,160"
+                fill="none"
+                stroke="var(--color-ultraviolett)"
+                stroke-width="2"
+              />
+              <!-- Inner connections (graph-like) -->
+              <circle cx="280" cy="175" r="4" fill="var(--color-ultraviolett)" opacity="0.8" />
+              <circle cx="265" cy="200" r="3" fill="var(--color-ultraviolett)" opacity="0.5" />
+              <circle cx="295" cy="198" r="3" fill="var(--color-ultraviolett)" opacity="0.5" />
+              <circle cx="275" cy="215" r="2.5" fill="var(--color-ultraviolett)" opacity="0.4" />
+              <circle cx="290" cy="210" r="2.5" fill="var(--color-ultraviolett)" opacity="0.4" />
+              <line x1="280" y1="175" x2="265" y2="200" stroke="var(--color-ultraviolett)" stroke-width="0.8" opacity="0.4" />
+              <line x1="280" y1="175" x2="295" y2="198" stroke="var(--color-ultraviolett)" stroke-width="0.8" opacity="0.4" />
+              <line x1="265" y1="200" x2="275" y2="215" stroke="var(--color-ultraviolett)" stroke-width="0.8" opacity="0.3" />
+              <line x1="295" y1="198" x2="290" y2="210" stroke="var(--color-ultraviolett)" stroke-width="0.8" opacity="0.3" />
+              <line x1="265" y1="200" x2="295" y2="198" stroke="var(--color-ultraviolett)" stroke-width="0.8" opacity="0.25" />
+              <!-- Label -->
+              <text
+                x="280" y="268"
+                text-anchor="middle"
+                font-family="var(--font-mono)"
+                font-size="10"
+                font-weight="700"
+                fill="var(--color-ultraviolett)"
+                letter-spacing="0.05em"
+              >KNOWLEDGE GRAPH</text>
+            </g>
+
+            <!-- Connecting Lines from KG to outputs -->
+            <line
+              x1="332" y1="170"
+              x2="390" y2="110"
+              class="flow-line"
+              stroke="var(--color-ink-light)"
+              stroke-width="1.5"
+            />
+            <line
+              x1="332" y1="185"
+              x2="390" y2="175"
+              class="flow-line"
+              stroke="var(--color-ink-light)"
+              stroke-width="1.5"
+            />
+            <line
+              x1="332" y1="200"
+              x2="390" y2="240"
+              class="flow-line"
+              stroke="var(--color-ink-light)"
+              stroke-width="1.5"
+            />
+            <line
+              x1="332" y1="215"
+              x2="390" y2="305"
+              class="flow-line"
+              stroke="var(--color-ink-light)"
+              stroke-width="1.5"
+            />
+
+            <!-- Stage 3: Output boxes -->
+            <g class="flow-stage flow-stage-output">
+              <!-- Website -->
+              <rect x="390" y="88" width="80" height="40" rx="6"
+                fill="none" stroke="rgba(245,240,232,0.2)" stroke-width="1.5" />
+              <text x="430" y="113" text-anchor="middle"
+                font-family="var(--font-mono)" font-size="10" font-weight="500"
+                fill="rgba(245,240,232,0.6)">Website</text>
+
+              <!-- SEO -->
+              <rect x="390" y="153" width="80" height="40" rx="6"
+                fill="none" stroke="rgba(245,240,232,0.2)" stroke-width="1.5" />
+              <text x="430" y="178" text-anchor="middle"
+                font-family="var(--font-mono)" font-size="10" font-weight="500"
+                fill="rgba(245,240,232,0.6)">SEO</text>
+
+              <!-- Content -->
+              <rect x="390" y="218" width="80" height="40" rx="6"
+                fill="none" stroke="rgba(245,240,232,0.2)" stroke-width="1.5" />
+              <text x="430" y="243" text-anchor="middle"
+                font-family="var(--font-mono)" font-size="10" font-weight="500"
+                fill="rgba(245,240,232,0.6)">Content</text>
+
+              <!-- Messaging -->
+              <rect x="390" y="283" width="80" height="40" rx="6"
+                fill="none" stroke="rgba(245,240,232,0.2)" stroke-width="1.5" />
+              <text x="430" y="308" text-anchor="middle"
+                font-family="var(--font-mono)" font-size="10" font-weight="500"
+                fill="rgba(245,240,232,0.6)">Messaging</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ---- Step List ---- */
+  .step-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .step-number {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-ultraviolett);
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .step-separator {
+    color: rgba(245, 240, 232, 0.25);
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: rgba(245, 240, 232, 0.65);
+    line-height: 1.5;
+  }
+
+  /* ---- Flow Diagram ---- */
+  .flow-diagram-container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .flow-diagram {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Animated flow lines */
+  .flow-line {
+    stroke-dasharray: 8 4;
+    animation: flow 2s linear infinite;
+  }
+
+  @keyframes flow {
+    to {
+      stroke-dashoffset: -24;
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .flow-line {
+      animation: none;
+    }
+  }
+</style>

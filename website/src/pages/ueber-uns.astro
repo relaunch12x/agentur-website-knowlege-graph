@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GruenderstorySection from "../components/GruenderstorySection.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Über uns — Relaunch12x"
+  description="Zwei Gründer, über 30 Jahre Freundschaft, dieselbe Erkenntnis: Annahmen sind der Grund, warum gute Unternehmen nicht wachsen."
+>
+  <!-- Nav (standalone, not inside Hero) -->
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5"
+    style="background: rgba(26, 26, 26, 0.8); backdrop-filter: blur(12px);"
+  >
+    <a
+      href="/"
+      class="text-lg font-bold tracking-tight"
+      style="font-family: var(--font-mono); color: var(--color-sand);"
+    >
+      relaunch<span style="color: var(--color-ultraviolett);">12x</span>
+    </a>
+    <div class="flex items-center gap-6">
+      <a
+        href="/ueber-uns"
+        class="hidden sm:inline text-sm font-medium transition-colors duration-200"
+        style="color: var(--color-sand); opacity: 0.8;"
+      >
+        Über uns
+      </a>
+      <a
+        href="/#kontakt"
+        class="rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
+        style="background: var(--color-ultraviolett); color: var(--color-sand);"
+        onclick="window.posthog?.capture('erstgespraech_cta_clicked', { source: 'ueber_uns_nav' })"
+      >
+        Erstgespräch buchen
+      </a>
+    </div>
+  </nav>
+
+  <div style="padding-top: 80px;">
+    <GruenderstorySection />
+  </div>
+
+  <Footer />
+</BaseLayout>
